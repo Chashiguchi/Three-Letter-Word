@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var letter = ""
     @State private var counter = 0
     @State private var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    @State private var selectedLetters = ["", "", ""]
     var body: some View {
         VStack {
             Text("Three Letter Word")
@@ -26,6 +27,15 @@ struct ContentView: View {
                         counter = 0
                     }
                 }
+            Text("Tap a red box to select that letter")
+            HStack {
+                ForEach(0..<3){ index in
+                    CustomLetterBox(color: .red, text: selectedLetters[index])
+                        .onTapGesture {
+                            selectedLetters[index] = letter
+                        }
+                }
+            }
         }
         .padding()
     }
